@@ -46,6 +46,25 @@ The String Calculator Kata is a TDD exercise that involves building a calculator
 - Uses `split(',')` and `fold()` to process any number of comma-separated values
 - Robust handling of edge cases including zero values
 
+### ✅ Step 3: Support New Lines Between Numbers - COMPLETED
+
+**Requirements:**
+- Handle newline characters as delimiters
+- Support mixed delimiters (commas and newlines)
+- Handle consecutive delimiters gracefully
+
+**Examples:**
+- Input: `"1\n2,3"` → Output: `6`
+- Input: `"1\n2\n3"` → Output: `6`
+- Input: `"1\n2,3\n4"` → Output: `10`
+- Input: `"1,\n2"` → Output: `3` (handles consecutive delimiters)
+
+**Implementation:**
+- Uses regex `RegExp(r'[,|\n]')` to split by both commas and newlines
+- Filters out empty strings to handle consecutive delimiters
+- Maintains backward compatibility with comma-only inputs
+- Robust whitespace handling with `trim()`
+
 ## 🛠️ Getting Started
 
 ### Prerequisites

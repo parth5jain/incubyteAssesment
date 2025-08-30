@@ -28,5 +28,32 @@ void main() {
       final calc = StringCalculator();
       expect(calc.add('1,2,3,4,5'), equals(15));
     });
+
+    // Step 3: Support new lines between numbers
+    test('newline between numbers returns their sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('1\n2,3'), equals(6));
+    });
+
+    test('multiple newlines between numbers returns their sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('1\n2\n3'), equals(6));
+    });
+
+    test('mixed newlines and commas returns their sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('1\n2,3\n4'), equals(10));
+    });
+
+    test('handles consecutive delimiters correctly', () {
+      final calc = StringCalculator();
+      expect(calc.add('1,\n2'), equals(3));
+      expect(calc.add('1\n,2'), equals(3));
+    });
+
+    test('handles whitespace around delimiters', () {
+      final calc = StringCalculator();
+      expect(calc.add(' 1 \n 2 , 3 '), equals(6));
+    });
   });
 }

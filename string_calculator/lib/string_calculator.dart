@@ -9,9 +9,14 @@ class StringCalculator {
   int add(String numbers) {
     if (numbers.isEmpty) return 0;
 
-    // Split by comma and convert to integers
+    // Split by comma or newline, filter out empty strings, and convert to integers
     final numberList =
-        numbers.split(',').map((num) => int.parse(num.trim())).toList();
+        numbers
+            .split(RegExp(r'[,|\n]'))
+            .map((num) => num.trim())
+            .where((num) => num.isNotEmpty)
+            .map((num) => int.parse(num))
+            .toList();
 
     // Return sum of all numbers
     return numberList.fold(0, (sum, number) => sum + number);
