@@ -17,5 +17,16 @@ void main() {
       final calc = StringCalculator();
       expect(calc.add('1,5'), equals(6));
     });
+
+    // Step 2: Handle any amount of numbers
+    test('three comma-separated numbers returns their sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('1,2,3'), equals(6));
+    });
+
+    test('five comma-separated numbers returns their sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('1,2,3,4,5'), equals(15));
+    });
   });
 }

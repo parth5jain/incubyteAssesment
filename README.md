@@ -4,7 +4,7 @@ This project implements the **String Calculator Kata** using **Test-Driven Devel
 
 ## 🎯 Assessment Overview
 
-The String Calculator is a TDD exercise that involves building a calculator that can add numbers from a string input. This assessment evaluates:
+The String Calculator Kata is a TDD exercise that involves building a calculator that can add numbers from a string input. This assessment evaluates:
 
 - TDD implementation following Red → Green → Refactor cycle
 - Code readability and testability
@@ -30,6 +30,21 @@ The String Calculator is a TDD exercise that involves building a calculator that
 - Test cases written in `/test/string_calculator_test.dart`
 - Implementation completed in `/lib/string_calculator.dart`
 - Uses comma splitting and integer parsing with proper error handling
+
+### ✅ Step 2: Handle Any Amount of Numbers - COMPLETED
+
+**Requirements:**
+- Extend the calculator to handle multiple comma-separated numbers
+- Support any number of comma-separated values
+
+**Examples:**
+- Input: `"1,2,3"` → Output: `6`
+- Input: `"1,2,3,4,5"` → Output: `15`
+
+**Implementation:**
+- Current implementation already handles this requirement perfectly
+- Uses `split(',')` and `fold()` to process any number of comma-separated values
+- Robust handling of edge cases including zero values
 
 ## 🛠️ Getting Started
 
@@ -84,4 +99,8 @@ Each step is committed separately to demonstrate the incremental development pro
 - Follow software craftsmanship principles
 - Commit frequently to show code evolution
 - Complete all steps for extra points
+
+---
+
+**Note**: This is an active TDD assessment. The implementation will evolve step by step as new requirements are added and tests are written.
 
