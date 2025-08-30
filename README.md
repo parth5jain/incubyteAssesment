@@ -65,6 +65,27 @@ The String Calculator Kata is a TDD exercise that involves building a calculator
 - Maintains backward compatibility with comma-only inputs
 - Robust whitespace handling with `trim()`
 
+### ✅ Step 4: Custom Delimiters - COMPLETED
+
+**Requirements:**
+- Support custom delimiter syntax: `"//[delimiter]\n[numbers...]"`
+- Handle special regex characters in delimiters
+- Maintain backward compatibility with default delimiters
+
+**Examples:**
+- Input: `"//;\n1;2"` → Output: `3`
+- Input: `"//|\n1|2|3"` → Output: `6`
+- Input: `"//#\n1#2#3#4"` → Output: `10`
+- Input: `"//*\n5"` → Output: `5`
+- Input: `"//.\n1.2.3"` → Output: `6` (handles regex special characters)
+
+**Implementation:**
+- Detects custom delimiter syntax with `startsWith('//')`
+- Parses delimiter from `//[delimiter]\n` format
+- Uses `RegExp.escape()` to handle special regex characters safely
+- Falls back to default comma/newline delimiters when no custom delimiter specified
+- Maintains full backward compatibility
+
 ## 🛠️ Getting Started
 
 ### Prerequisites

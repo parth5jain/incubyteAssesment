@@ -3,16 +3,28 @@
 /// More dartdocs go here.
 library;
 
-// TODO: Export any libraries intended for clients of this package.
-
 class StringCalculator {
   int add(String numbers) {
     if (numbers.isEmpty) return 0;
 
-    // Split by comma or newline, filter out empty strings, and convert to integers
+    String delimiter = ',';
+    String numbersToProcess = numbers;
+
+    // Check if custom delimiter is specified
+    if (numbers.startsWith('//')) {
+      final delimiterEndIndex = numbers.indexOf('\n');
+      if (delimiterEndIndex != -1) {
+        delimiter = numbers.substring(2, delimiterEndIndex);
+        numbersToProcess = numbers.substring(delimiterEndIndex + 1);
+      }
+    }
+
+    // Split by the appropriate delimiter(s) and convert to integers
     final numberList =
-        numbers
-            .split(RegExp(r'[,|\n]'))
+        numbersToProcess
+            .split(
+              RegExp(delimiter == ',' ? r'[,|\n]' : RegExp.escape(delimiter)),
+            )
             .map((num) => num.trim())
             .where((num) => num.isNotEmpty)
             .map((num) => int.parse(num))

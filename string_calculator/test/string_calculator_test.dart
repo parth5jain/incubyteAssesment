@@ -55,5 +55,44 @@ void main() {
       final calc = StringCalculator();
       expect(calc.add(' 1 \n 2 , 3 '), equals(6));
     });
+
+    // Step 4: Custom Delimiters
+    test('custom semicolon delimiter returns correct sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('//;\n1;2'), equals(3));
+    });
+
+    test('custom pipe delimiter returns correct sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('//|\n1|2|3'), equals(6));
+    });
+
+    test('custom hash delimiter returns correct sum', () {
+      final calc = StringCalculator();
+      expect(calc.add('//#\n1#2#3#4'), equals(10));
+    });
+
+    test('custom delimiter with single number', () {
+      final calc = StringCalculator();
+      expect(calc.add('//*\n5'), equals(5));
+    });
+
+    test('custom delimiter maintains backward compatibility', () {
+      final calc = StringCalculator();
+      expect(calc.add('1,2,3'), equals(6));
+      expect(calc.add('1\n2\n3'), equals(6));
+    });
+
+    test('custom delimiter with special regex characters', () {
+      final calc = StringCalculator();
+      expect(calc.add('//.\n1.2.3'), equals(6));
+      expect(calc.add('//+\n1+2+3'), equals(6));
+      expect(calc.add('//?\n1?2?3'), equals(6));
+    });
+
+    test('custom delimiter with multiple special characters', () {
+      final calc = StringCalculator();
+      expect(calc.add('//[+]\n1[+]2[+]3'), equals(6));
+    });
   });
 }
