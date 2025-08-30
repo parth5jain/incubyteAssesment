@@ -107,6 +107,27 @@ The String Calculator Kata is a TDD exercise that involves building a calculator
 - Works with all delimiter types (comma, newline, custom)
 - Maintains performance by checking negatives before summing
 
+### 🎁 Bonus Feature: Ignore Numbers Bigger Than 1000 - COMPLETED
+
+**Requirements:**
+- Numbers bigger than 1000 should be ignored
+- Numbers exactly equal to 1000 should be included
+- Works with all delimiter types
+
+**Examples:**
+- Input: `"2,1001"` → Output: `2` (1001 is ignored)
+- Input: `"1,1001,2,2000,3"` → Output: `6` (1001 and 2000 are ignored)
+- Input: `"1001,2000,3000"` → Output: `0` (all numbers ignored)
+- Input: `"1,1000,2"` → Output: `1003` (1000 is included)
+- Input: `"//;\n1;1001;2"` → Output: `3` (works with custom delimiters)
+- Input: `"1\n1001,2"` → Output: `3` (works with newlines)
+
+**Implementation:**
+- Filters out numbers greater than 1000 using `where((num) => num <= 1000)`
+- Maintains all existing functionality (delimiters, negative validation)
+- Efficient filtering before summing operation
+- Comprehensive test coverage for edge cases
+
 
 ## 🛠️ Getting Started
 
@@ -135,7 +156,7 @@ string_calculator/
 ├── lib/
 │   └── string_calculator.dart          # Main implementation
 ├── test/
-│   └── string_calculator_test.dart     # Test cases (24 tests)
+│   └── string_calculator_test.dart     # Test cases (33 tests)
 ├── pubspec.yaml                        # Dependencies
 └── README.md
 ```
@@ -163,8 +184,9 @@ Each step is committed separately to demonstrate the incremental development pro
 - ✅ Follow software craftsmanship principles
 - ✅ Commit frequently to show code evolution
 - ✅ Complete all steps for extra points
+- 🎁 **Bonus**: Implement additional features for extra points
 
 ---
 
-**Note**: This TDD assessment has been completed successfully with all required steps implemented and thoroughly tested.
+**Note**: This TDD assessment has been completed successfully with all required steps implemented, thoroughly tested, and includes bonus features for extra points.
 

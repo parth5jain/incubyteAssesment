@@ -37,7 +37,8 @@ class StringCalculator {
       throw FormatException('negative numbers not allowed $negativeNumbersStr');
     }
 
-    // Return sum of all numbers
-    return numberList.fold(0, (sum, number) => sum + number);
+    // Filter out numbers bigger than 1000 and return sum
+    final validNumbers = numberList.where((num) => num <= 1000).toList();
+    return validNumbers.fold(0, (sum, number) => sum + number);
   }
 }

@@ -186,5 +186,52 @@ void main() {
         ),
       );
     });
+
+    // Bonus Feature: Ignore numbers bigger than 1000
+    test('numbers bigger than 1000 are ignored', () {
+      final calc = StringCalculator();
+      expect(calc.add('2,1001'), equals(2));
+    });
+
+    test('multiple numbers bigger than 1000 are ignored', () {
+      final calc = StringCalculator();
+      expect(calc.add('1,1001,2,2000,3'), equals(6));
+    });
+
+    test('all numbers bigger than 1000 returns 0', () {
+      final calc = StringCalculator();
+      expect(calc.add('1001,2000,3000'), equals(0));
+    });
+
+    test('numbers exactly 1000 are included', () {
+      final calc = StringCalculator();
+      expect(calc.add('1,1000,2'), equals(1003));
+    });
+
+    test('ignore numbers bigger than 1000 with custom delimiter', () {
+      final calc = StringCalculator();
+      expect(calc.add('//;\n1;1001;2'), equals(3));
+    });
+
+    test('ignore numbers bigger than 1000 with newlines', () {
+      final calc = StringCalculator();
+      expect(calc.add('1\n1001,2'), equals(3));
+    });
+
+    test('edge case: 999 and 1001', () {
+      final calc = StringCalculator();
+      expect(calc.add('999,1001'), equals(999));
+    });
+
+    test('very large numbers are ignored', () {
+      final calc = StringCalculator();
+      expect(calc.add('1,999999,2,1000000'), equals(3));
+    });
+
+    test('boundary case: numbers at exactly 1000', () {
+      final calc = StringCalculator();
+      expect(calc.add('1000'), equals(1000));
+      expect(calc.add('999,1000,1001'), equals(1999));
+    });
   });
 }
