@@ -86,6 +86,28 @@ The String Calculator Kata is a TDD exercise that involves building a calculator
 - Falls back to default comma/newline delimiters when no custom delimiter specified
 - Maintains full backward compatibility
 
+### ✅ Step 5: Negative Number Validation - COMPLETED
+
+**Requirements:**
+- Throw exception for negative numbers with message: `"negative numbers not allowed <negative_number>"`
+- Include all negative numbers in error message, separated by commas
+- Handle negative numbers with all delimiter types
+
+**Examples:**
+- Input: `"-1"` → Throws: `"negative numbers not allowed -1"`
+- Input: `"1,-2,3,-4"` → Throws: `"negative numbers not allowed -2,-4"`
+- Input: `"-1,-2,-3"` → Throws: `"negative numbers not allowed -1,-2,-3"`
+- Input: `"//;\n1;-2;3"` → Throws: `"negative numbers not allowed -2"`
+- Input: `"1\n-2,3"` → Throws: `"negative numbers not allowed -2"`
+
+**Implementation:**
+- Collects all negative numbers using `where((num) => num < 0)`
+- Formats error message with all negative numbers joined by commas
+- Throws `FormatException` with the required message format
+- Works with all delimiter types (comma, newline, custom)
+- Maintains performance by checking negatives before summing
+
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
@@ -113,7 +135,7 @@ string_calculator/
 ├── lib/
 │   └── string_calculator.dart          # Main implementation
 ├── test/
-│   └── string_calculator_test.dart     # Test cases
+│   └── string_calculator_test.dart     # Test cases (24 tests)
 ├── pubspec.yaml                        # Dependencies
 └── README.md
 ```
@@ -131,16 +153,18 @@ Each step is committed separately to demonstrate the incremental development pro
 ## 📚 Resources
 
 - [Incubyte TDD Assessment Blog](https://blog.incubyte.co/blog/tdd-assessment/)
+- [Dart Testing Documentation](https://dart.dev/guides/testing)
+- [TDD Best Practices](https://blog.cleancoder.com/uncle-bob/2014/05/14/TheLittleMocker.html)
 
 ## 🎯 Assessment Goals
 
-- Demonstrate strong TDD practices
-- Show clean, readable, and testable code
-- Follow software craftsmanship principles
-- Commit frequently to show code evolution
-- Complete all steps for extra points
+- ✅ Demonstrate strong TDD practices
+- ✅ Show clean, readable, and testable code
+- ✅ Follow software craftsmanship principles
+- ✅ Commit frequently to show code evolution
+- ✅ Complete all steps for extra points
 
 ---
 
-**Note**: This is an active TDD assessment. The implementation will evolve step by step as new requirements are added and tests are written.
+**Note**: This TDD assessment has been completed successfully with all required steps implemented and thoroughly tested.
 

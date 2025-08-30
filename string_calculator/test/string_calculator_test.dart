@@ -94,5 +94,97 @@ void main() {
       final calc = StringCalculator();
       expect(calc.add('//[+]\n1[+]2[+]3'), equals(6));
     });
+
+    // Step 5: Negative Number Validation
+    test('single negative number throws exception with correct message', () {
+      final calc = StringCalculator();
+      expect(
+        () => calc.add('-1'),
+        throwsA(
+          predicate(
+            (e) => e.toString().contains('negative numbers not allowed -1'),
+          ),
+        ),
+      );
+    });
+
+    test(
+      'multiple negative numbers throws exception with all negative numbers',
+      () {
+        final calc = StringCalculator();
+        expect(
+          () => calc.add('1,-2,3,-4'),
+          throwsA(
+            predicate(
+              (e) =>
+                  e.toString().contains('negative numbers not allowed -2,-4'),
+            ),
+          ),
+        );
+      },
+    );
+
+    test('all negative numbers throws exception with all numbers listed', () {
+      final calc = StringCalculator();
+      expect(
+        () => calc.add('-1,-2,-3'),
+        throwsA(
+          predicate(
+            (e) =>
+                e.toString().contains('negative numbers not allowed -1,-2,-3'),
+          ),
+        ),
+      );
+    });
+
+    test('negative numbers with custom delimiter throws exception', () {
+      final calc = StringCalculator();
+      expect(
+        () => calc.add('//;\n1;-2;3'),
+        throwsA(
+          predicate(
+            (e) => e.toString().contains('negative numbers not allowed -2'),
+          ),
+        ),
+      );
+    });
+
+    test('negative numbers with newlines throws exception', () {
+      final calc = StringCalculator();
+      expect(
+        () => calc.add('1\n-2,3'),
+        throwsA(
+          predicate(
+            (e) => e.toString().contains('negative numbers not allowed -2'),
+          ),
+        ),
+      );
+    });
+
+    test('zero and negative numbers mixed', () {
+      final calc = StringCalculator();
+      expect(
+        () => calc.add('0,-1,2,-3'),
+        throwsA(
+          predicate(
+            (e) => e.toString().contains('negative numbers not allowed -1,-3'),
+          ),
+        ),
+      );
+    });
+
+    test('large negative numbers handled correctly', () {
+      final calc = StringCalculator();
+      expect(
+        () => calc.add('-999,-1000'),
+        throwsA(
+          predicate(
+            (e) => e.toString().contains(
+              'negative numbers not allowed -999,-1000',
+            ),
+          ),
+        ),
+      );
+    });
   });
 }

@@ -30,6 +30,13 @@ class StringCalculator {
             .map((num) => int.parse(num))
             .toList();
 
+    // Check for negative numbers and collect them
+    final negativeNumbers = numberList.where((num) => num < 0).toList();
+    if (negativeNumbers.isNotEmpty) {
+      final negativeNumbersStr = negativeNumbers.join(',');
+      throw FormatException('negative numbers not allowed $negativeNumbersStr');
+    }
+
     // Return sum of all numbers
     return numberList.fold(0, (sum, number) => sum + number);
   }
